@@ -16,23 +16,22 @@ graph TD
     A[User Interface - Streamlit] -->|User asks question| B[Query Handler - RAG Chain]
     B -->|Passes query| C[Retriever - ChromaDB]
     C -->|Fetches relevant chunks| D[Document Chunks]
-
     D -->|Passes to| E[LLM - Groq API via LangChain]
     E -->|Generates response| F[Answer]
-
     F -->|Displayed in UI| A
 
-    subgraph Backend Components
+    subgraph Backend_Components
         C
         D
         E
     end
 
-    subgraph Preprocessing (One-time setup)
+    subgraph Preprocessing_One_Time_Setup["Preprocessing: One-time Setup"]
         G[Preloaded Document - Maid Margaret Book] --> H[Text Splitter - Recursive]
         H --> I[Embeddings - HuggingFace]
         I --> C
     end
+
 ```
 
 
