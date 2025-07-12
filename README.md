@@ -73,17 +73,16 @@ docker compose build
 
 ### 4. Run the Application Stack
 
-```bash
+bash
 docker compose up
-```
+
 
 ### 5. Access the App
 
 Once the app is running, open your browser and go to:
 
-```
 http://localhost:8501
-```
+
 
 You’ll see a clean UI where you can:
 - Ask questions about *Maid Margaret*
@@ -93,20 +92,6 @@ You’ll see a clean UI where you can:
 ##  Project Structure
 
 ![Project Structure](images/project_structure.png)
-
-```
-📁 app/
-   └── rag_app.py       ← Streamlit application
-📁 images/
-   └── margaret.jpg     ← Book image shown in the UI
-📁 chroma/              ← Folder for Chroma vector data
-📁 chroma_db/           ← Folder for ChromaDB server persistence
-.env                    ← (API keys - not committed)
-Dockerfile              ← Docker build file
-docker-compose.yml      ← Service orchestration
-requirements.txt        ← Python dependencies
-README.md               ← You're here!
-```
 
 
 ##  Public Deployment
