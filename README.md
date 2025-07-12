@@ -1,17 +1,16 @@
 
-# 🧠 Maid Margaret Q&A System (RAG App)
+# Maid Margaret Q&A System (RAG App)
 
 This project is a **Retrieval-Augmented Generation (RAG)** application built using **Streamlit**, **LangChain**, and **ChromaDB**. It allows users to ask questions about the historical book *"Maid Margaret of Galloway"*, and receive intelligent, source-aware answers powered by language models.
 
----
 
-## 📚 Project Purpose
+## Project Purpose
 
 The aim of this application is to enhance understanding of historical documents through natural language querying. By uploading or indexing a book and using a vector-based search engine, users can interactively ask questions about the content and retrieve accurate responses based on the actual text.
 
----
 
-## 🏗️ Architecture Overview
+
+## Architecture Overview
 
 ```
 User (Browser)
@@ -33,14 +32,14 @@ User (Browser)
 
 ---
 
-## 🧩 Chunking Strategy
+## Chunking Strategy
 
 - The book is preprocessed and split into **semantic chunks** using LangChain's default `RecursiveCharacterTextSplitter`.
 - Each chunk is approximately **500 characters**, with an **overlap of 50**, to maintain context flow between chunks.
 
 ---
 
-## 🔍 Embedding Model
+## Embedding Model
 
 The default embedding model is:
 
@@ -50,7 +49,7 @@ The default embedding model is:
 
 ---
 
-## 🚀 Getting Started (Local Setup)
+## Getting Started (Local Setup)
 
 ### 1. Clone the Repository
 
@@ -121,16 +120,6 @@ requirements.txt        ← Python dependencies
 README.md               ← You're here!
 ```
 
----
-
-## 🧠 Assumptions Made
-
-- The book *"Maid Margaret of Galloway"* is available in clean `.txt` format.
-- A consistent chunking strategy provides good semantic context for question-answering.
-- Chroma is persistent between container restarts due to mounted volumes.
-- Only `.txt` files are accepted for upload and embedding.
-
----
 
 ## 🌍 Public Deployment
 
@@ -140,7 +129,7 @@ Please replace this link with the actual public URL once deployed.
 
 ---
 
-## 🤝 Acknowledgements
+## Acknowledgements
 
 - [LangChain](https://github.com/langchain-ai/langchain)
 - [Streamlit](https://streamlit.io)
@@ -150,7 +139,7 @@ Please replace this link with the actual public URL once deployed.
 
 ---
 
-## 🛠️ Future Improvements
+## Future Improvements
 
 - Add PDF upload support
 - Advanced search filters (e.g., date, keyword)
@@ -158,4 +147,4 @@ Please replace this link with the actual public URL once deployed.
 
 ---
 
-> Built with ❤️ for Capstone Week – Real-time Document Q&A with LLMs
+> Built with ❤️ 
