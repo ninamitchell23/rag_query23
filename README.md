@@ -9,7 +9,6 @@ This project is a **Retrieval-Augmented Generation (RAG)** application built usi
 The aim of this application is to enhance understanding of historical documents through natural language querying. By uploading or indexing a book and using a vector-based search engine, users can interactively ask questions about the content and retrieve accurate responses based on the actual text.
 
 
-
 ## Architecture Overview
 
 ```
@@ -30,14 +29,12 @@ User (Browser)
 - **HuggingFace Embeddings** (`all-MiniLM-L6-v2`) are used to embed text chunks.
 - **Groq API** provides fast, low-latency LLM inference.
 
----
 
 ## Chunking Strategy
 
 - The book is preprocessed and split into **semantic chunks** using LangChain's default `RecursiveCharacterTextSplitter`.
 - Each chunk is approximately **500 characters**, with an **overlap of 50**, to maintain context flow between chunks.
 
----
 
 ## Embedding Model
 
@@ -47,18 +44,13 @@ The default embedding model is:
 - **Provider**: HuggingFace Sentence Transformers
 - **Purpose**: Converts document chunks and queries into dense vectors for semantic search in Chroma.
 
----
-
 ## Getting Started (Local Setup)
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/maid-margaret-rag.git
-cd maid-margaret-rag
+git clone https://github.com/ninamitchell23/rag_query23.git
 ```
-
----
 
 ### 2. Set Environment Variables
 
@@ -79,15 +71,11 @@ GROQ_MODEL=llama3-8b-8192  # or your preferred Groq model
 docker compose build
 ```
 
----
-
 ### 4. Run the Application Stack
 
 ```bash
 docker compose up
 ```
-
----
 
 ### 5. Access the App
 
@@ -99,12 +87,10 @@ http://localhost:8501
 
 You’ll see a clean UI where you can:
 - Ask questions about *Maid Margaret*
-- View past questions and answers in the sidebar
-- Upload new `.txt` files for indexing
+- View past questions in the sidebar
 
----
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 📁 app/
@@ -113,7 +99,7 @@ You’ll see a clean UI where you can:
    └── margaret.jpg     ← Book image shown in the UI
 📁 chroma/              ← Folder for Chroma vector data
 📁 chroma_db/           ← Folder for ChromaDB server persistence
-.env                    ← (Your API keys - not committed)
+.env                    ← (API keys - not committed)
 Dockerfile              ← Docker build file
 docker-compose.yml      ← Service orchestration
 requirements.txt        ← Python dependencies
@@ -121,13 +107,10 @@ README.md               ← You're here!
 ```
 
 
-## 🌍 Public Deployment
+##  Public Deployment
 
-> **Live App:** [https://your-vps-ip:8501](https://your-vps-ip:8501)
+> **Live App:** 
 
-Please replace this link with the actual public URL once deployed.
-
----
 
 ## Acknowledgements
 
@@ -137,14 +120,11 @@ Please replace this link with the actual public URL once deployed.
 - [HuggingFace Embeddings](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
 - [Groq API](https://console.groq.com/)
 
----
 
 ## Future Improvements
 
 - Add PDF upload support
 - Advanced search filters (e.g., date, keyword)
-- Multi-user chat sessions with login
 
 ---
-
 > Built with ❤️ 
