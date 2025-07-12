@@ -73,16 +73,17 @@ docker compose build
 
 ### 4. Run the Application Stack
 
-bash
+```bash
 docker compose up
-
+```
 
 ### 5. Access the App
 
 Once the app is running, open your browser and go to:
 
+```
 http://localhost:8501
-
+```
 
 You’ll see a clean UI where you can:
 - Ask questions about *Maid Margaret*
