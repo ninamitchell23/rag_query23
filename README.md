@@ -3,12 +3,12 @@
 
 This project is a **Retrieval-Augmented Generation (RAG)** application built using **Streamlit**, **LangChain**, and **ChromaDB**. It allows users to ask questions about the historical book *"Maid Margaret of Galloway"*, and receive intelligent, source-aware answers powered by language models.
 
-
+---
 ## Project Purpose
 
 The aim of this application is to enhance understanding of historical documents through natural language querying. By uploading or indexing a book and using a vector-based search engine, users can interactively ask questions about the content and retrieve accurate responses based on the actual text.
 
-
+---
 ## Architecture Overview
 
 ```mermaid
@@ -34,20 +34,17 @@ graph TD
 
 ```
 
+- The document Maid Margaret of Galloway is preprocessed during development, not uploaded by users.
+- During this setup, the text is split into chunks using a recursive character text splitter and each chunk is converted into embeddings using a HuggingFace model. These  embeddings are stored in a ChromaDB instance locally.
+- At runtime, the Streamlit UI accepts questions. A RetrievalQA chain fetches relevant chunks from ChromaDB based on the user's query. The Groq LLM processes the chunks and query to generate an accurate answer. The answer is displayed back in the Streamlit app.
 
-- **Streamlit** powers the web UI for asking questions and displaying history.
-- **LangChain** handles the logic for query transformation, document retrieval, and integration with the LLM.
-- **ChromaDB** stores vector embeddings of the book content.
-- **HuggingFace Embeddings** (`all-MiniLM-L6-v2`) are used to embed text chunks.
-- **Groq API** provides fast, low-latency LLM inference.
-
-
+---
 ## Chunking Strategy
 
 - The book is preprocessed and split into **semantic chunks** using LangChain's default `RecursiveCharacterTextSplitter`.
 - Each chunk is approximately **500 characters**, with an **overlap of 50**, to maintain context flow between chunks.
 
-
+---
 ## Embedding Model
 
 The default embedding model is:
@@ -56,6 +53,7 @@ The default embedding model is:
 - **Provider**: HuggingFace Sentence Transformers
 - **Purpose**: Converts document chunks and queries into dense vectors for semantic search in Chroma.
 
+---
 ## Getting Started (Local Setup)
 
 ### 1. Clone the Repository
