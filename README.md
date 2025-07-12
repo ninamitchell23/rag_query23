@@ -36,7 +36,7 @@ graph TD
 
 ```
 
-- The document Maid Margaret of Galloway is preprocessed during development, not uploaded by users.
+- The document *Maid Margaret of Galloway* is preprocessed during development, not uploaded by users.
 - During this setup, the text is split into chunks using a recursive character text splitter and each chunk is converted into embeddings using a HuggingFace model. These  embeddings are stored in a ChromaDB instance locally.
 - At runtime, the Streamlit UI accepts questions. A RetrievalQA chain fetches relevant chunks from ChromaDB based on the user's query. The Groq LLM processes the chunks and query to generate an accurate answer. The answer is displayed back in the Streamlit app.
 
