@@ -5,6 +5,11 @@ from dotenv import load_dotenv
 import os
 from langchain.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.document_loaders import TextLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+import chromadb
+
+client = chromadb.HttpClient(host="chromadb", port=8000)
 
 st.markdown(
     """
@@ -65,7 +70,25 @@ if "selected_question_index" not in st.session_state:
 if "user_input" not in st.session_state:
     st.session_state.user_input = ""
 
+def process_uploaded_file(file_path):
+    loader = TextLoader(file_path, encoding="utf-8")
+    documents = loader.load()
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+    chunks = text_splitter.split_documents(documents)
+    vectordb.add_documents(chunks)
+    vectordb.persist()
+
 # Sidebar: Chat History
+#st.sidebar.title(" Upload a Text File")
+#uploaded_file = st.sidebar.file_uploader("Upload `.txt` file", type="txt")
+
+#if uploaded_file is not None:
+    #with open("uploaded_temp.txt", "wb") as f:
+    #    f.write(uploaded_file.getbuffer())
+    #process_uploaded_file("uploaded_temp.txt")
+    #st.sidebar.success(" File uploaded and indexed!")
+    #st.rerun()
+
 st.sidebar.title("Chat History")
 
 if st.sidebar.button("🗑️ Clear History"):
@@ -95,22 +118,21 @@ if st.button("Send"):
         with st.spinner("Thinking..."):
             result = qa_chain.invoke(query)
 
-            # Store question and answer
-            st.session_state.messages.append({
-                "question": query,
-                "answer": result["result"],
-                "sources": result["source_documents"]
-            })
-            st.session_state.selected_question_index = len(st.session_state.messages) - 1
-            st.session_state.user_input = ""  # Clear the input box
-            st.rerun()
+        # Store question and answer
+        st.session_state.messages.append({
+            "question": query,
+            "answer": result["result"],
+            "sources": result["source_documents"]
+        })
 
-# Show current or selected answer
-if st.session_state.selected_question_index is not None:
-    selected = st.session_state.messages[st.session_state.selected_question_index]
-    #st.markdown(f"###  Question:\n{selected['question']}")
-    st.markdown(f"###  Answer:\n{selected['answer']}")
+        # Set selected index to latest and clear input
+        st.session_state.selected_question_index = len(st.session_state.messages) - 1
+        st.session_state.user_input = ""
 
-    #with st.expander(" View Source Chunks"):
-        #for i, doc in enumerate(selected["sources"]):
-        #    st.markdown(f"**Chunk {i+1}:**\n{doc.page_content[:300]}...")
+# Safely show selected or last message after processing
+if st.session_state.messages:
+    selected_index = st.session_state.selected_question_index or len(st.session_state.messages) - 1
+    selected = st.session_state.messages[selected_index]
+
+    st.markdown(f"**Question:** {selected['question']}")
+    st.markdown(f"**Answer:** {selected['answer']}")
