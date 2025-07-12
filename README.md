@@ -92,6 +92,8 @@ You’ll see a clean UI where you can:
 
 ##  Project Structure
 
+![Project Structure](images/project_structure.png)
+
 ```
 📁 app/
    └── rag_app.py       ← Streamlit application
