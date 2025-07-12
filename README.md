@@ -11,17 +11,30 @@ The aim of this application is to enhance understanding of historical documents 
 
 ## Architecture Overview
 
+```mermaid
+graph TD
+    A[User Interface - Streamlit] -->|User asks question| B[Query Handler - RAG Chain]
+    B -->|Passes query| C[Retriever - ChromaDB]
+    C -->|Fetches relevant chunks| D[Document Chunks]
+
+    D -->|Passes to| E[LLM - Groq API via LangChain]
+    E -->|Generates response| F[Answer]
+
+    F -->|Displayed in UI| A
+
+    subgraph Backend Components
+        C
+        D
+        E
+    end
+
+    subgraph Preprocessing (One-time setup)
+        G[Preloaded Document - Maid Margaret Book] --> H[Text Splitter - Recursive]
+        H --> I[Embeddings - HuggingFace]
+        I --> C
+    end
 ```
-User (Browser)
-     ↓
-[ Streamlit UI ]
-     ↓
-[ LangChain + LLM (via Groq API) ]
-     ↓
-[ Chroma Vector Store ]
-     ↓
-[ Embedded Document Chunks ]
-```
+
 
 - **Streamlit** powers the web UI for asking questions and displaying history.
 - **LangChain** handles the logic for query transformation, document retrieval, and integration with the LLM.
