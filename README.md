@@ -44,7 +44,7 @@ graph TD
 ## Chunking Strategy
 
 - The book is preprocessed and split into **semantic chunks** using LangChain's default `RecursiveCharacterTextSplitter`.
-- Each chunk is approximately **500 characters**, with an **overlap of 50**, to maintain context flow between chunks.
+- Each chunk is approximately **1000 characters**, with an **overlap of 200**, to maintain context flow between chunks.
 
 ---
 ## Embedding Model
